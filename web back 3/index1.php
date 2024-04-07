@@ -30,7 +30,7 @@
         <li>
           <div class="date">
             <span>Год рождения:</span>
-            <select name="year">
+            <select name="date">
               <?php 
                 for ($i = 2022; $i >= 1922; $i--) {
                   printf('<option value="%d">%d год</option>', $i, $i);

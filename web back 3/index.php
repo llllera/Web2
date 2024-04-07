@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 $name = $_POST['name'];
 $phone = $_POST['phone'];
 $email = $_POST['email'];
-$year = $_POST['year'];
+$year = $_POST['date'];
 $gender = $_POST['gender'];
 if(isset($_POST["languages"])) {
   $languages = $_POST["languages"];
@@ -106,7 +106,7 @@ $db = new PDO('mysql:host=localhost;dbname=u67325', $user, $pass,
 
 
 try {
-  $stmt = $db->prepare("INSERT INTO users (name, phone, email, year, gender, biography) VALUES (?, ?, ?, ?, ?, ?)");
+  $stmt = $db->prepare("INSERT INTO users (name, phone, email, date, gender, biography) VALUES (?, ?, ?, ?, ?, ?)");
   $stmt->execute([$name, $phone, $email, $year, $gender, $biography]);
   $application_id = $db->lastInsertId();
   $stmt = $db->prepare("INSERT INTO languages (application_id, language_id) VALUES (?, ?)");
