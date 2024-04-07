@@ -11,6 +11,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   exit();
 }
 
+$user = 'u67325'; 
+$pass = '2356748'; 
+$db = new PDO('mysql:host=localhost;dbname=u67325', $user, $pass,
+  [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); 
+
 $name = $_POST['name'];
 $phone = $_POST['phone'];
 $email = $_POST['email'];
@@ -112,13 +117,6 @@ if ($checkboxContract == '') {
 if ($errors) {
   exit();
 }
-
-
-
-$user = 'u67325'; 
-$pass = '2356748'; 
-$db = new PDO('mysql:host=localhost;dbname=u67325', $user, $pass,
-  [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); 
 
 
 try {
