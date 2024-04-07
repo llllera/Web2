@@ -106,8 +106,8 @@ $db = new PDO('mysql:host=localhost;dbname=u67325', $user, $pass,
 
 
 try {
-  $stmt = $db->prepare("INSERT INTO users (name, phone, email, date, gender, biography) VALUES (?, ?, ?, ?, ?, ?)");
-  $stmt->execute([$name, $phone, $email, $year, $gender, $biography]);
+  $stmt = $db->prepare("INSERT INTO users (name, phone, email, date, gender, biography, checkboxContract) VALUES (?, ?, ?, ?, ?, ?, ?)");
+  $stmt->execute([$name, $phone, $email, $year, $gender, $biography, $checkboxContract]);
   $application_id = $db->lastInsertId();
   $stmt = $db->prepare("INSERT INTO languages (application_id, language_id) VALUES (?, ?)");
   foreach ($languages as $language_id) {
