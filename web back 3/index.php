@@ -97,16 +97,16 @@ if ($errors) {
   exit();
 }
 
-include('dbconnect.php');
+
 
 $user = 'u67325'; 
 $pass = '2356748'; 
-$db = new PDO('mysql:host=localhost;dbname=67325', $user, $pass,
+$db = new PDO('mysql:host=localhost;dbname=u67325', $user, $pass,
   [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); 
 
 
 try {
-  $stmt = $db->prepare("INSERT INTO application (name, phone, email, year, gender, biography) VALUES (?, ?, ?, ?, ?, ?)");
+  $stmt = $db->prepare("INSERT INTO users (name, phone, email, year, gender, biography) VALUES (?, ?, ?, ?, ?, ?)");
   $stmt->execute([$name, $phone, $email, $year, $gender, $biography]);
   $application_id = $db->lastInsertId();
   $stmt = $db->prepare("INSERT INTO languages (application_id, language_id) VALUES (?, ?)");
