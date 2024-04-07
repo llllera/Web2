@@ -109,7 +109,7 @@ try {
   $stmt = $db->prepare("INSERT INTO users (name, phone, email, date, gender, biography, checkboxContract) VALUES (?, ?, ?, ?, ?, ?, ?)");
   $stmt->execute([$name, $phone, $email, $year, $gender, $biography, $checkboxContract]);
   $application_id = $db->lastInsertId();
-  $stmt = $db->prepare("INSERT INTO languages (application_id, language_id) VALUES (?, ?)");
+  $stmt = $db->prepare("INSERT INTO languages (id_user, id_lang) VALUES (?, ?)");
   foreach ($languages as $language_id) {
     $stmt->execute([$application_id, $language_id]);
   }
