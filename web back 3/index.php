@@ -69,12 +69,28 @@ if ($gender != 'male' && $gender != 'female') {
   $errors = TRUE;
 }
 
-if (empty($languages)) {
-  print('<h1>Выберите хотя бы один язык программирования.</h1><br/>');
+if (empty($_POST['favourite_lan'])) {
+  print('Выберите любимый язык программирования!');
   $errors = TRUE;
-} else if (count($filtred_languages) != count($languages)) {
-  print('<h1>Выбран неизвестный язык программирования.</h1><br/>');
-  $errors = TRUE;
+} else { 
+  $sth = $db->prepare("SELECT id FROM languages");
+  $sth->execute();
+  $langs = $sth->fetchAll();
+
+  foreach ($_POST['favourite_lan'] as $id_lang) {
+      $error_lang = TRUE;
+      foreach ($langs as $lang) {
+          if ($id_lang == $lang[0]) {
+              $error_lang = FALSE;
+              break;
+          }
+      }
+      if ($error_lang == TRUE) {
+          print('Выбранный язык программирования не найден в базе данных!');
+          $errors = TRUE;
+          break;
+      }
+  }
 }
 
 if (empty($biography)) {
@@ -108,10 +124,15 @@ $db = new PDO('mysql:host=localhost;dbname=u67325', $user, $pass,
 try {
   $stmt = $db->prepare("INSERT INTO users (name, phone, email, date, gender, biography, checkboxContract) VALUES (?, ?, ?, ?, ?, ?, ?)");
   $stmt->execute([$name, $phone, $email, $year, $gender, $biography, $checkboxContract]);
-  $application_id = $db->lastInsertId();
-  $stmt = $db->prepare("INSERT INTO languages (id_user, id_lang) VALUES (?, ?)");
-  foreach ($languages as $language_id) {
-    $stmt->execute([$application_id, $language_id]);
+  
+  $id = $db->lastInsertId();
+
+  $stmt = $db->prepare("INSERT INTO users_and_languages (id_user, id_lang) VALUES (:id_user, :id_lang)");
+  foreach ($_POST['favourite_lan'] as $id_lang) {
+      $stmt->bindParam(':id_user', $id_user);
+      $stmt->bindParam(':id_lang', $id_lang);
+      $id_user = $id;
+      $stmt->execute();
   }
 } catch (PDOException $e) {
   print('Error : ' . $e->getMessage());

@@ -49,53 +49,20 @@
               Жен</label><br>
         </li>
         <li>
-          <p>Выбери любимые<br>языки программирования:</p>
-          <ul>
-            <li>
-              <input type="checkbox" id="Pascal" name="languages[]" value=1>
-              <label for="Pascal">Pascal</label>
-            </li>
-            <li>
-              <input type="checkbox" id="C" name="languages[]" value=2>
-              <label for="C">C</label>
-            </li>
-            <li>
-              <input type="checkbox" id="Cpp" name="languages[]" value=3>
-              <label for="Cpp">C++</label>
-            </li>
-            <li>
-              <input type="checkbox" id="JavaScript" name="languages[]" value=4>
-              <label for="JavaScript">JavaScript</label>
-            </li>
-            <li>
-              <input type="checkbox" id="PHP" name="languages[]" value=5>
-              <label for="PHP">PHP</label>
-            </li>
-            <li>
-              <input type="checkbox" id="Python" name="languages[]" value=6>
-              <label for="Python">Python</label>
-            </li>
-            <li>
-              <input type="checkbox" id="Java" name="languages[]" value=7>
-              <label for="Java">Java</label>
-            </li>
-            <li>
-              <input type="checkbox" id="Haskel" name="languages[]" value=8>
-              <label for="Haskel">Haskel</label>
-            </li>
-            <li>
-              <input type="checkbox" id="Clojure" name="languages[]" value=9>
-              <label for="Clojure">Clojure</label>
-            </li>
-            <li>
-              <input type="checkbox" id="Prolog" name="languages[]" value=10>
-              <label for="Prolog">Prolog</label>
-            </li>
-            <li>
-              <input type="checkbox" id="Scala" name="languages[]" value=11>
-              <label for="Scala">Scala</label>
-            </li>
-          </ul> 
+          <label>Ваш любимый язык программирования:</label><br>
+          <select multiple="multiple" name="favourite_lan[]" id="program_language">
+              <option value="1">Pascal</option>
+              <option value="2">C</option>
+              <option value="3">C++</option>
+              <option value="4">Java</option>
+              <option value="5">JavaScript</option>
+              <option value="6">PHP</option>
+              <option value="7">Python</option>
+              <option value="8">Haskell</option>
+              <option value="9">Clojure</option>
+              <option value="10">Prolog</option>
+              <option value="11">Scala</option>
+          </select>
         </li>
         <li>
             <label>
