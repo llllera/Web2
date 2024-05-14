@@ -213,29 +213,31 @@ else {
       setcookie('checkboxContract', '', 100000);
       // TODO: тут необходимо удалить остальные Cookies.
     }
+
+    $user = 'u67325'; 
+    $pass = '2356748'; 
+    $db = new PDO('mysql:host=localhost;dbname=u67325', $user, $pass,
+      [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); 
+
+    try {
+      $stmt = $db->prepare("INSERT INTO users (name, phone, email, date, gender, biography, checkboxContract) VALUES (?, ?, ?, ?, ?, ?, ?)");
+      $stmt->execute([$name, $phone, $email, $year, $gender, $biography, $checkboxContract]);
+      
+      $id = $db->lastInsertId();
+
+      $stmt = $db->prepare("INSERT INTO users_and_languages (id_user, id_lang) VALUES (:id_user, :id_lang)");
+      foreach ($_POST['favourite_lan'] as $id_lang) {
+          $stmt->bindParam(':id_user', $id_user);
+          $stmt->bindParam(':id_lang', $id_lang);
+          $id_user = $id;
+          $stmt->execute();
+      }
+    } catch (PDOException $e) {
+      print('Error : ' . $e->getMessage());
+      exit();
+    }
+
+    setcookie('save', '1');
+    header('Location: index.php');
 }
-$user = 'u67325'; 
-$pass = '2356748'; 
-$db = new PDO('mysql:host=localhost;dbname=u67325', $user, $pass,
-  [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); 
 
-try {
-  $stmt = $db->prepare("INSERT INTO users (name, phone, email, date, gender, biography, checkboxContract) VALUES (?, ?, ?, ?, ?, ?, ?)");
-  $stmt->execute([$name, $phone, $email, $year, $gender, $biography, $checkboxContract]);
-  
-  $id = $db->lastInsertId();
-
-  $stmt = $db->prepare("INSERT INTO users_and_languages (id_user, id_lang) VALUES (:id_user, :id_lang)");
-  foreach ($_POST['favourite_lan'] as $id_lang) {
-      $stmt->bindParam(':id_user', $id_user);
-      $stmt->bindParam(':id_lang', $id_lang);
-      $id_user = $id;
-      $stmt->execute();
-  }
-} catch (PDOException $e) {
-  print('Error : ' . $e->getMessage());
-  exit();
-}
-
-setcookie('save', '1');
-header('Location: index.php');
