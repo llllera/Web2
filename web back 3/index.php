@@ -115,7 +115,6 @@ if ($checkboxContract == '') {
 }
 
 if ($errors) {
-  header('Location: index1.php');
   exit();
 }
 
