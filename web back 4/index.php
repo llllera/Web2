@@ -2,6 +2,25 @@
 <?php
 
 header('Content-Type: text/html; charset=UTF-8');
+$name = $_POST['name'];
+  $phone = $_POST['phone'];
+  $email = $_POST['email'];
+  $date = $_POST['date'];
+  $gender = $_POST['gender'];
+  if(isset($_POST["favourite_lan"])) {
+    $languages = $_POST["favourite_lan"];
+    $filtred_languages = array_filter($languages, 
+    function($value) {
+      return($value == 1 || $value == 2 || $value == 3
+      || $value == 3 || $value == 4 || $value == 5
+      || $value == 6|| $value == 7|| $value == 8
+      || $value == 9 || $value == 10 || $value == 11);
+      }
+    );
+  }
+  $biography = $_POST['biography'];
+  $checkboxContract = isset($_POST['checkboxContract']);
+
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   if (!empty($_GET['save'])) {
@@ -23,25 +42,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   $errors['language'] = !empty($_COOKIE['language_error']);
   $errors['biography'] = !empty($_COOKIE['biography_error']);
   $errors['checkboxContract'] = !empty($_COOKIE['checkboxContract_error']);
-
-  $name = $_POST['name'];
-  $phone = $_POST['phone'];
-  $email = $_POST['email'];
-  $date = $_POST['date'];
-  $gender = $_POST['gender'];
-  if(isset($_POST["favourite_lan"])) {
-    $languages = $_POST["favourite_lan"];
-    $filtred_languages = array_filter($languages, 
-    function($value) {
-      return($value == 1 || $value == 2 || $value == 3
-      || $value == 3 || $value == 4 || $value == 5
-      || $value == 6|| $value == 7|| $value == 8
-      || $value == 9 || $value == 10 || $value == 11);
-      }
-    );
-  }
-  $biography = $_POST['biography'];
-  $checkboxContract = isset($_POST['checkboxContract']);
 
   // Выдаем сообщения об ошибках.
   if ($errors['name']) {
