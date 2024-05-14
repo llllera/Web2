@@ -26,7 +26,7 @@ if (!empty($messages)) {
         <li>
             <label>
                 ФИО<br>
-                <input name="name" <?php if ($errors['name']) {print 'class="error"';} ?> value="<?php print $values['name']; ?>"
+                <input name="name"  value="<?php print $values['name']; ?>"
                   placeholder="Введите ваше ФИО">
               </label><br>
         </li>
