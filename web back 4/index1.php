@@ -1,4 +1,5 @@
-
+<html>
+  <head>
 <link rel="stylesheet" href="form.css">
 <style>
 .error {
@@ -100,3 +101,5 @@ if (!empty($messages)) {
         </li>
     </ol>
   </form>
+  </body>
+</html>
