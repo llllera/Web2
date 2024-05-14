@@ -146,6 +146,14 @@ else {
   }
   $biography = $_POST['biography'];
   $checkboxContract = isset($_POST['checkboxContract']);
+  $lang = '';
+  if(!empty($_POST['favourite_lan']))
+  {
+    for($i = 0; $i < count($_POST['favourite_lan']); $i++)
+    {
+      $lang .= $lang[$i] . ",";
+    }
+  }
 
     if (empty($name) || !preg_match('/^[a-zA-Zа-яА-ЯёЁ\s\-]+$/u', $name)) {
       // Выдаем куку на день с флажком об ошибке в поле fio.
@@ -183,7 +191,7 @@ else {
       setcookie('languages_error', '1', time() + 24 * 60 * 60);
       $errors = TRUE;
     }
-    setcookie('languages_value', $_POST['favourite_lan'], time() + 30 * 24 * 60 * 60);
+    setcookie('languages_value', $lang, time() + 30 * 24 * 60 * 60);
 
     if (empty($biography) || !preg_match('/^[a-zA-Zа-яА-ЯёЁ0-9.,;!? \-]+$/u', $biography) || strlen($biography) > 128) {
       setcookie('biography_error', '1', time() + 24 * 60 * 60);
