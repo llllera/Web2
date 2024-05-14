@@ -1,5 +1,23 @@
 
 <link rel="stylesheet" href="form.css">
+<style>
+.error {
+  border: 2px solid red;
+}
+    </style>
+  </head>
+  <body>
+
+<?php
+if (!empty($messages)) {
+  print('<div id="messages">');
+  // Выводим все сообщения.
+  foreach ($messages as $message) {
+    print($message);
+  }
+  print('</div>');
+}
+?>
     <form action="index.php"
     method="POST">
 
@@ -7,14 +25,14 @@
         <li>
             <label>
                 ФИО<br>
-                <input name="name"
+                <input name="name" <?php if ($errors['name']) {print 'class="error"';} ?> value="<?php print $values['name']; ?>"
                   placeholder="Введите ваше ФИО">
               </label><br>
         </li>
         <li>
             <label>
                 Номер телефона<br>
-                <input name="phone"
+                <input name="phone"  <?php if ($errors['phone']) {print 'class="error"';} ?> value="<?php print $values['phone']; ?>"
                   type="tel"
                   placeholder="Введите номер телефона">
             </label><br>
@@ -22,7 +40,7 @@
         <li>
           <label>
             email<br>
-            <input name="email"
+            <input name="email"  <?php if ($errors['email']) {print 'class="error"';} ?> value="<?php print $values['email']; ?>"
               type="email"
               placeholder="Введите вашу почту">
           </label><br>
@@ -30,7 +48,7 @@
         <li>
           <div class="date">
             <span>Год рождения:</span>
-            <select name="date">
+            <select name="date">  <?php if ($errors['date']) {print 'class="error"';} ?> value="<?php print $values['date']; ?>"
               <?php 
                 for ($i = 2022; $i >= 1922; $i--) {
                   printf('<option value="%d">%d год</option>', $i, $i);
@@ -50,7 +68,7 @@
         </li>
         <li>
           <label>Ваш любимый язык программирования:</label><br>
-          <select multiple="multiple" name="favourite_lan[]" id="program_language">
+          <select multiple="multiple" name="favourite_lan[]"   <?php if ($errors['language']) {print 'class="error"';} ?> value="<?php print $values['language']; ?>"id="program_language">
               <option value="1">Pascal</option>
               <option value="2">C</option>
               <option value="3">C++</option>
@@ -67,13 +85,13 @@
         <li>
             <label>
                 Биография<br>
-                <textarea name="biography"
+                <textarea name="biography"  <?php if ($errors['biography']) {print 'class="error"';} ?> value="<?php print $values['biography']; ?>"
                   placeholder="Расскажите о себе"></textarea>
             </label><br>
         </li>
         <li>
             <br>
-          <label><input type="checkbox" checked="checked"
+          <label><input type="checkbox" checked="checked"  <?php if ($errors['checkboxContract']) {print 'class="error"';} ?> value="<?php print $values['checkboxContract']; ?>"
             name="checkboxContract">
             С контрактом ознакомлен (а)</label><br>
         </li>
