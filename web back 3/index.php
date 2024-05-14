@@ -136,4 +136,4 @@ try {
   print('Error : ' . $e->getMessage());
   exit();
 }
-header('Location: ?save=1');
+header('Location: index1.php');
