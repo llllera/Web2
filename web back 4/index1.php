@@ -26,14 +26,14 @@ if (!empty($messages)) {
         <li>
             <label>
                 ФИО<br>
-                <input name="name"  value="<?php print $values['name']; ?>"
+                <input name="name"
                   placeholder="Введите ваше ФИО">
               </label><br>
         </li>
         <li>
             <label>
                 Номер телефона<br>
-                <input name="phone"  <?php if ($errors['phone']) {print 'class="error"';} ?> value="<?php print $values['phone']; ?>"
+                <input name="phone" 
                   type="tel"
                   placeholder="Введите номер телефона">
             </label><br>
@@ -41,7 +41,7 @@ if (!empty($messages)) {
         <li>
           <label>
             email<br>
-            <input name="email"  <?php if ($errors['email']) {print 'class="error"';} ?> value="<?php print $values['email']; ?>"
+            <input name="email"  
               type="email"
               placeholder="Введите вашу почту">
           </label><br>
@@ -49,7 +49,7 @@ if (!empty($messages)) {
         <li>
           <div class="date">
             <span>Год рождения:</span>
-            <select name="date">  <?php if ($errors['date']) {print 'class="error"';} ?> value="<?php print $values['date']; ?>"
+            <select name="date">  
               <?php 
                 for ($i = 2022; $i >= 1922; $i--) {
                   printf('<option value="%d">%d год</option>', $i, $i);
@@ -69,7 +69,7 @@ if (!empty($messages)) {
         </li>
         <li>
           <label>Ваш любимый язык программирования:</label><br>
-          <select multiple="multiple" name="favourite_lan[]"   <?php if ($errors['language']) {print 'class="error"';} ?> value="<?php print $values['language']; ?>"id="program_language">
+          <select multiple="multiple" name="favourite_lan[]"   id="program_language">
               <option value="1">Pascal</option>
               <option value="2">C</option>
               <option value="3">C++</option>
@@ -86,13 +86,13 @@ if (!empty($messages)) {
         <li>
             <label>
                 Биография<br>
-                <textarea name="biography"  <?php if ($errors['biography']) {print 'class="error"';} ?> value="<?php print $values['biography']; ?>"
+                <textarea name="biography" 
                   placeholder="Расскажите о себе"></textarea>
             </label><br>
         </li>
         <li>
             <br>
-          <label><input type="checkbox" checked="checked"  <?php if ($errors['checkboxContract']) {print 'class="error"';} ?> value="<?php print $values['checkboxContract']; ?>"
+          <label><input type="checkbox" checked="checked"  "
             name="checkboxContract">
             С контрактом ознакомлен (а)</label><br>
         </li>
