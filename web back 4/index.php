@@ -183,7 +183,7 @@ else {
       setcookie('favourite_lan_error', '1', time() + 24 * 60 * 60);
       $errors = TRUE;
     }
-    setcookie('favourite_lan_value', $_POST['favourite_lan'], time() + 30 * 24 * 60 * 60);
+    setcookie('languages_value', $_POST['favourite_lan'], time() + 30 * 24 * 60 * 60);
 
     if (empty($biography) || !preg_match('/^[a-zA-Zа-яА-ЯёЁ0-9.,;!? \-]+$/u', $biography) || strlen($biography) > 128) {
       setcookie('biography_error', '1', time() + 24 * 60 * 60);
