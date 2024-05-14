@@ -180,7 +180,7 @@ else {
     setcookie('gender_value', $_POST['gender'], time() + 30 * 24 * 60 * 60);
 
     if (empty($_POST['favourite_lan']) ) {
-      setcookie('favourite_lan_error', '1', time() + 24 * 60 * 60);
+      setcookie('languages_error', '1', time() + 24 * 60 * 60);
       $errors = TRUE;
     }
     setcookie('languages_value', $_POST['favourite_lan'], time() + 30 * 24 * 60 * 60);
@@ -208,7 +208,7 @@ else {
       setcookie('email_error', '', 100000);
       setcookie('date_error', '', 100000);
       setcookie('gender_error', '', 100000);
-      setcookie('favourite_lanerror', '', 100000);
+      setcookie('languages_error', '', 100000);
       setcookie('biography', '', 100000);
       setcookie('checkboxContract', '', 100000);
       // TODO: тут необходимо удалить остальные Cookies.
