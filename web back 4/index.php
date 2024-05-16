@@ -53,22 +53,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     // Удаляем куки, указывая время устаревания в прошлом.
     setcookie('name_error', '', 100000);
     setcookie('name_value', '', 100000);
+    $messages[] = '<div class="error">Заполните имя!</div>';
     // Выводим сообщение.
   }
   
   if ($errors['phone']) {
    
-      $messages[] = '<div class="error">Заполните номер телефона!</div>';
+      
    
     setcookie('phone_error', '', 100000);
     setcookie('phone_value', '', 100000);
+    $messages[] = '<div class="error">Заполните номер телефона!</div>';
   }
   if ($errors['email']) {
    
-      $messages[] = '<div class="error">Заполните почту!</div>';
+     
    
     setcookie('email_error', '', 100000);
     setcookie('email_value', '', 100000);
+    $messages[] = '<div class="error">Заполните почту!</div>';
   }
   if ($errors['date']) {
     setcookie('date_error', '', 100000);
@@ -87,10 +90,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   }
   if ($errors['biography']) {
    
-      $messages[] = '<div class="error">Напишите о себе!</div>';
+     
     
     setcookie('biography_error', '', 100000);
     setcookie('biography_value', '', 100000);
+    $messages[] = '<div class="error">Напишите о себе!</div>';
   }
   if ($errors['checkboxContract']) {
     setcookie('checkboxContract_error', '', 100000);
