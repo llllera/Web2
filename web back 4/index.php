@@ -28,50 +28,67 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
  
 
-  //$name = $_POST['name'];
-  //$phone = $_POST['phone'];
-  //$email = $_POST['email'];
-  //$date = $_POST['date'];
-  //$gender = $_POST['gender'];
-  //if(isset($_POST["favourite_lan"])) {
-    //$languages = $_POST["favourite_lan"];
-    //$filtred_languages = array_filter($languages, 
-    //function($value) {
-      //return($value == 1 || $value == 2 || $value == 3
-      //|| $value == 3 || $value == 4 || $value == 5
-      //|| $value == 6|| $value == 7|| $value == 8
-      //|| $value == 9 || $value == 10 || $value == 11);
-      //}
-    //);
-  //}
-  //$biography = $_POST['biography'];
-  //$checkboxContract = isset($_POST['checkboxContract']);
+  $name = $_POST['name'];
+  $phone = $_POST['phone'];
+  $email = $_POST['email'];
+  $date = $_POST['date'];
+  $gender = $_POST['gender'];
+  if(isset($_POST["favourite_lan"])) {
+    $languages = $_POST["favourite_lan"];
+    $filtred_languages = array_filter($languages, 
+    function($value) {
+      return($value == 1 || $value == 2 || $value == 3
+      || $value == 3 || $value == 4 || $value == 5
+      || $value == 6|| $value == 7|| $value == 8
+      || $value == 9 || $value == 10 || $value == 11);
+      }
+    );
+  }
+  $biography = $_POST['biography'];
+  $checkboxContract = isset($_POST['checkboxContract']);
 
   // Выдаем сообщения об ошибках.
   if ($errors['name']) {
-   
+    if(empty($name)){
+      $messages[] = '<div class="error">Заполните имя!</div>';
+    }
+    else{
+      $messages[] = '<div class="error">Поле должно содержать только буквы и пробелы!</div>';
+    }
     // Удаляем куки, указывая время устаревания в прошлом.
     setcookie('name_error', '', 100000);
     setcookie('name_value', '', 100000);
-    $messages[] = '<div class="error">Заполните имя!</div>';
+
     // Выводим сообщение.
   }
   
   if ($errors['phone']) {
-   
-      
+    
+    if(empty($phone)){
+
+      $messages[] = '<div class="error">Заполните номер телефона!</div>';
+    }
+    else{
+      $messages[] = '<div class="error">Поле должно содержать только знак + и цифры!</div>';
+    }
    
     setcookie('phone_error', '', 100000);
     setcookie('phone_value', '', 100000);
-    $messages[] = '<div class="error">Заполните номер телефона!</div>';
+    
   }
   if ($errors['email']) {
    
-     
+    if(empty($email)){
+
+      $messages[] = '<div class="error">Заполните почту!</div>';
+    }
+    else{
+      $messages[] = '<div class="error">Поле обязатольно должно содержать @ и .!</div>';
+    }
    
     setcookie('email_error', '', 100000);
     setcookie('email_value', '', 100000);
-    $messages[] = '<div class="error">Заполните почту!</div>';
+    
   }
   if ($errors['date']) {
     setcookie('date_error', '', 100000);
@@ -89,12 +106,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $messages[] = '<div class="error">Отметьте языки!</div>';
   }
   if ($errors['biography']) {
-   
+    if(empty($biography)){
+
+      $messages[] = '<div class="error">Напишите о себе!</div>';
+    }
+    else{
+      $messages[] = '<div class="error">Поле может содержать только буквы, цифры, знаки ".,;!? \-" и не должно превышать 128 символов!</div>';
+    }
      
     
     setcookie('biography_error', '', 100000);
     setcookie('biography_value', '', 100000);
-    $messages[] = '<div class="error">Напишите о себе!</div>';
+  
   }
   if ($errors['checkboxContract']) {
     setcookie('checkboxContract_error', '', 100000);
