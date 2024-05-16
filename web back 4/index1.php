@@ -9,16 +9,7 @@
   </head>
   <body>
 
-<?php
-if (!empty($messages)) {
-  print('<div id="messages">');
-  // Выводим все сообщения.
-  foreach ($messages as $message) {
-    print($message);
-  }
-  print('</div>');
-}
-?>
+
     <form action="index.php"
     method="POST">
 
@@ -101,5 +92,15 @@ if (!empty($messages)) {
         </li>
     </ol>
   </form>
+  <?php
+if (!empty($messages)) {
+  print('<div id="messages">');
+  // Выводим все сообщения.
+  foreach ($messages as $message) {
+    print($message);
+  }
+  print('</div>');
+}
+?>
   </body>
 </html>
