@@ -26,6 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   $errors['biography'] = !empty($_COOKIE['biography_error']);
   $errors['checkboxContract'] = !empty($_COOKIE['checkboxContract_error']);
 
+  include('index1.php');
+
   $name = $_POST['name'];
   $phone = $_POST['phone'];
   $email = $_POST['email'];
@@ -121,7 +123,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   $values['biography'] = empty($_COOKIE['biography_value']) ? '' : $_COOKIE['biography_value'];
   $values['checkboxContract'] = empty($_COOKIE['checkboxContract_value']) ? '' : $_COOKIE['checkboxContract_value'];
   }
-  include('index1.php');
+  
 
 }
 else {
