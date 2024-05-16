@@ -112,7 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   $values['languages'] = empty($_COOKIE['languages_value']) ? '' : $_COOKIE['languages_value'];
   $values['biography'] = empty($_COOKIE['biography_value']) ? '' : $_COOKIE['biography_value'];
   $values['checkboxContract'] = empty($_COOKIE['checkboxContract_value']) ? '' : $_COOKIE['checkboxContract_value'];
-  }
+  
   include('index1.php');
 
 }
