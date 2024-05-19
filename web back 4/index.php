@@ -128,8 +128,8 @@ else {
   $email = $_POST['email'];
   $date = $_POST['date'];
   $gender = $_POST['gender'];
-  if(isset($_POST["favourite_lan"])) {
-    $languages = $_POST["favourite_lan"];
+  if(isset($_POST['favourite_lan'])) {
+    $languages = $_POST['favourite_lan'];
     $filtred_languages = array_filter($languages, 
     function($value) {
       return($value == 1 || $value == 2 || $value == 3
