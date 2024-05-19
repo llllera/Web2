@@ -34,7 +34,7 @@ if (!empty($messages)) {
         <li>
             <label>
                 Номер телефона<br>
-                <input name="phone"  <?php if ($errors['phone']) {print 'class="error"';} ?> value="<?php print $values['phone']; ?>"
+                <input name="phone" <?php if ($errors['phone']) {print 'class="error"';} ?> value="<?php print $values['phone']; ?>"
                   type="tel"
                   placeholder="Введите номер телефона">
             </label><br>
@@ -87,7 +87,7 @@ if (!empty($messages)) {
         <li>
             <label>
                 Биография<br>
-                <textarea name="biography"  <?php if ($errors['biography']) {print 'class="error"';} ?> value="<?php print $values['biography']; ?>"
+                <textarea name="biography"  <?php if ($errors['biography']) {print 'class="error"';} ?> value="<?php print  htmlspecialchars($values['biography']); ?>"
                   placeholder="Расскажите о себе"></textarea>
             </label><br>
         </li>
