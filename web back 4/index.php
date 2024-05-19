@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   
   if ($errors['phone']) {
     
-    if($errors['phone']=='1'){
+    if(_COOKIE['phone_error']=='1'){
 
       $messages[] = '<div class="error">Заполните номер телефона!</div>';
     }
@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   }
   if ($errors['email']) {
    
-    if($errors['email']=='1'){
+    if($_COOKIE['email_error']=='1'){
 
       $messages[] = '<div class="error">Заполните почту!</div>';
     }
@@ -84,19 +84,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $messages[] = '<div class="error">Отметьте языки!</div>';
   }
   if ($errors['biography']) {
-    if($errors['biography']=='1'){
+    if($_COOKIE['biography_error']=='1'){
 
       $messages[] = '<div class="error">Напишите о себе!</div>';
     }
     else{
-      if($errors['biography']=='2'){
+      if($_COOKIE['biography_error']=='2'){
       $messages[] = '<div class="error">Поле может содержать только буквы, цифры, знаки ".,;!? \-"!</div>';}
       else{
         $messages[] = '<div class="error">Поле не может превышать 128 символов!</div>';}
       }
+      setcookie('biography_error', '', 100000);
+      setcookie('biography_value', '', 100000);
     }
-    setcookie('biography_error', '', 100000);
-    setcookie('biography_value', '', 100000);
+   
   
   if ($errors['checkboxContract']) {
     setcookie('checkboxContract_error', '', 100000);
@@ -213,10 +214,10 @@ else {
     
     setcookie('biography_value', $_POST['biography'], time() + 30 * 24 * 60 * 60);
     if ($checkboxContract == '') {
-      setcookie('checkboxContract', '1', time() + 24 * 60 * 60);
+      setcookie('checkboxContract_error', '1', time() + 24 * 60 * 60);
       $errors = TRUE;
     }
-    setcookie('checkboxContract', $_POST['checkboxContract'], time() + 30 * 24 * 60 * 60);
+    setcookie('checkboxContract_value', $_POST['checkboxContract'], time() + 30 * 24 * 60 * 60);
 
     if ($errors) {
       // При наличии ошибок перезагружаем страницу и завершаем работу скрипта.
