@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
   // Выдаем сообщения об ошибках.
   if ($errors['name']) {
-    if($errors['name']=='1'){
+    if($_COOKIE['name_error']=='1'){
       $messages[] = '<div class="error">Заполните имя!</div>';
     }
     else{
