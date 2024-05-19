@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   
   if ($errors['phone']) {
     
-    if(_COOKIE['phone_error']=='1'){
+    if($_COOKIE['phone_error']=='1'){
 
       $messages[] = '<div class="error">Заполните номер телефона!</div>';
     }
