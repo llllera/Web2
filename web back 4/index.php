@@ -211,8 +211,8 @@ else {
         setcookie('biography_error', '3', time() + 24 * 60 * 60);
         $errors = TRUE;}
     }
-    
     setcookie('biography_value', $_POST['biography'], time() + 30 * 24 * 60 * 60);
+
     if ($checkboxContract == '') {
       setcookie('checkboxContract_error', '1', time() + 24 * 60 * 60);
       $errors = TRUE;
@@ -232,8 +232,8 @@ else {
       setcookie('date_error', '', 100000);
       setcookie('gender_error', '', 100000);
       setcookie('languages_error', '', 100000);
-      setcookie('biography', '', 100000);
-      setcookie('checkboxContract', '', 100000);
+      setcookie('biography_error', '', 100000);
+      setcookie('checkboxContract_error', '', 100000);
       // TODO: тут необходимо удалить остальные Cookies.
     }
 
