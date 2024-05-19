@@ -3,8 +3,6 @@
 
 header('Content-Type: text/html; charset=UTF-8');
 
-
-
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     $messages = array();
@@ -26,30 +24,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   $errors['biography'] = !empty($_COOKIE['biography_error']);
   $errors['checkboxContract'] = !empty($_COOKIE['checkboxContract_error']);
 
- 
-
-  $name = $_POST['name'];
-  $phone = $_POST['phone'];
-  $email = $_POST['email'];
-  $date = $_POST['date'];
-  $gender = $_POST['gender'];
-  if(isset($_POST["favourite_lan"])) {
-    $languages = $_POST["favourite_lan"];
-    $filtred_languages = array_filter($languages, 
-    function($value) {
-      return($value == 1 || $value == 2 || $value == 3
-      || $value == 3 || $value == 4 || $value == 5
-      || $value == 6|| $value == 7|| $value == 8
-      || $value == 9 || $value == 10 || $value == 11);
-      }
-    );
-  }
-  $biography = $_POST['biography'];
-  $checkboxContract = isset($_POST['checkboxContract']);
 
   // Выдаем сообщения об ошибках.
   if ($errors['name']) {
-    if(empty($name)){
+    if($errors['name']=='1'){
       $messages[] = '<div class="error">Заполните имя!</div>';
     }
     else{
@@ -64,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   
   if ($errors['phone']) {
     
-    if(empty($phone)){
+    if($errors['phone']=='1'){
 
       $messages[] = '<div class="error">Заполните номер телефона!</div>';
     }
@@ -78,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   }
   if ($errors['email']) {
    
-    if(empty($email)){
+    if($errors['email']=='1'){
 
       $messages[] = '<div class="error">Заполните почту!</div>';
     }
@@ -106,19 +84,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $messages[] = '<div class="error">Отметьте языки!</div>';
   }
   if ($errors['biography']) {
-    if(empty($biography)){
+    if($errors['biography']=='1'){
 
       $messages[] = '<div class="error">Напишите о себе!</div>';
     }
     else{
-      $messages[] = '<div class="error">Поле может содержать только буквы, цифры, знаки ".,;!? \-" и не должно превышать 128 символов!</div>';
+      if($errors['biography']=='2'){
+      $messages[] = '<div class="error">Поле может содержать только буквы, цифры, знаки ".,;!? \-"!</div>';}
+      else{
+        $messages[] = '<div class="error">Поле не может превышать 128 символов!</div>';}
+      }
     }
-     
-    
     setcookie('biography_error', '', 100000);
     setcookie('biography_value', '', 100000);
   
-  }
   if ($errors['checkboxContract']) {
     setcookie('checkboxContract_error', '', 100000);
     setcookie('checkboxContract_value', '', 100000);
@@ -170,22 +149,34 @@ else {
     }
   }
 
-    if (empty($name) || !preg_match('/^[a-zA-Zа-яА-ЯёЁ\s\-]+$/u', $name)) {
+    if (empty($name)) {
       // Выдаем куку на день с флажком об ошибке в поле fio.
       setcookie('name_error', '1', time() + 24 * 60 * 60);
+      $errors = TRUE;
+    }
+    else if(!preg_match('/^[a-zA-Zа-яА-ЯёЁ\s\-]+$/u', $name)){
+      setcookie('name_error', '2', time() + 24 * 60 * 60);
       $errors = TRUE;
     }
     // Сохраняем ранее введенное в форму значение на месяц.
     setcookie('name_value', $_POST['name'], time() + 30 * 24 * 60 * 60);
 
-    if (empty($phone) || !preg_match('/^(\+\d+|\d+)$/', $phone)) {
+    if (empty($phone) ) {
       setcookie('phone_error', '1', time() + 24 * 60 * 60);
+      $errors = TRUE;
+    }
+    else if(!preg_match('/^(\+\d+|\d+)$/', $phone)){
+      setcookie('phone_error', '2', time() + 24 * 60 * 60);
       $errors = TRUE;
     }
     setcookie('phone_value', $_POST['phone'], time() + 30 * 24 * 60 * 60);
 
-    if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    if (empty($email) ) {
       setcookie('email_error', '1', time() + 24 * 60 * 60);
+      $errors = TRUE;
+    }
+    else if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+      setcookie('email_error', '2', time() + 24 * 60 * 60);
       $errors = TRUE;
     }
     setcookie('email_value', $_POST['email'], time() + 30 * 24 * 60 * 60);
@@ -208,10 +199,18 @@ else {
     }
     setcookie('languages_value', $lang, time() + 30 * 24 * 60 * 60);
 
-    if (empty($biography) || !preg_match('/^[a-zA-Zа-яА-ЯёЁ0-9.,;!? \-]+$/u', $biography) || strlen($biography) > 128) {
+    if (empty($biography)  ) {
       setcookie('biography_error', '1', time() + 24 * 60 * 60);
       $errors = TRUE;
     }
+    else{ if(!preg_match('/^[a-zA-Zа-яА-ЯёЁ0-9.,;!? \-]+$/u', $biography)){
+      setcookie('biography_error', '2', time() + 24 * 60 * 60);
+      $errors = TRUE;}
+      else if(strlen($biography) > 128){
+        setcookie('biography_error', '3', time() + 24 * 60 * 60);
+        $errors = TRUE;}
+    }
+    
     setcookie('biography_value', $_POST['biography'], time() + 30 * 24 * 60 * 60);
     if ($checkboxContract == '') {
       setcookie('checkboxContract', '1', time() + 24 * 60 * 60);
