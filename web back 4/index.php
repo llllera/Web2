@@ -151,7 +151,7 @@ else {
 
     if (empty($name)) {
       // Выдаем куку на день с флажком об ошибке в поле fio.
-      setcookie('name_error', '', time() + 24 * 60 * 60);
+      setcookie('name_error', '1', time() + 24 * 60 * 60);
       $errors = TRUE;
     }
     else if(!preg_match('/^[a-zA-Zа-яА-ЯёЁ\s\-]+$/u', $name)){
