@@ -92,7 +92,7 @@ if (!empty($messages)) {
         </li>
         <li>
             <br>
-          <label><input type="checkbox" checked="checked"  <?php if ($errors['checkboxContract']) {print 'class="error"';} ?> value="<?php print $values['checkboxContract']; ?>"
+          <label><input type="checkbox"  <?php if ($errors['checkboxContract']) {print 'class="error"';} ?> value="<?php print $values['checkboxContract']; ?>"
             name="checkboxContract">
             С контрактом ознакомлен (а)</label><br>
         </li>
