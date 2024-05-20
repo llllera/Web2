@@ -72,7 +72,7 @@ if (!empty($messages)) {
         <li>
           <label>Ваш любимый язык программирования:</label><br>
           <select multiple="multiple" name="favourite_lan[]"   <?php if ($errors['language']) {print 'class="error"';} ?> id="program_language">
-              <option value="1" <?php if(strpos($values['languages'],'1' )!== false && strpos($values['languages'],'10' )== false && strpos($values['languages'],'11' )=== false){print 'checked'} ?> >Pascal</option>
+              <option value="1" <?php if(strpos($values['languages'],'1' )!== false && strpos($values['languages'],'10' )== false && strpos($values['languages'],'11' )=== false){print 'checked';} ?> >Pascal</option>
               <option value="2" <?php if(strpos($values['languages'],'2' )!== false){print 'checked';} ?>>C</option>
               <option value="3" <?php if(strpos($values['languages'],'3' )!== false){print 'checked';} ?>>C++</option>
               <option value="4" <?php if(strpos($values['languages'],'4' )!== false){print 'checked';} ?>>Java</option>
