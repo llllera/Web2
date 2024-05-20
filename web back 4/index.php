@@ -244,7 +244,7 @@ else {
 
     try {
       $stmt = $db->prepare("INSERT INTO users (name, phone, email, date, gender, biography, checkboxContract) VALUES (?, ?, ?, ?, ?, ?, ?)");
-      $stmt->execute([$name, $phone, $email, $year, $gender, $biography, $checkboxContract]);
+      $stmt->execute([$name, $phone, $email, $date, $gender, $biography, $checkboxContract]);
       
       $id = $db->lastInsertId();
 
