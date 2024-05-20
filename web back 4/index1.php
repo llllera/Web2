@@ -73,16 +73,16 @@ if (!empty($messages)) {
           <label>Ваш любимый язык программирования:</label><br>
           <select multiple="multiple" name="favourite_lan[]"   <?php if ($errors['language']) {print 'class="error"';} ?> id="program_language">
               <option value="1" <?php if(strpos($values['languages'],'1' )!== false && strpos($values['languages'],'10' )== false && strpos($values['languages'],'11' )=== false){print 'checked'} ?> >Pascal</option>
-              <option value="2" <?php if(strpos($values['languages'],'2' )!== false){print 'checked'} ?>>C</option>
-              <option value="3" <?php if(strpos($values['languages'],'3' )!== false){print 'checked'} ?>>C++</option>
-              <option value="4" <?php if(strpos($values['languages'],'4' )!== false){print 'checked'} ?>>Java</option>
-              <option value="5" <?php if(strpos($values['languages'],'5' )!== false){print 'checked'} ?>>JavaScript</option>
-              <option value="6" <?php if(strpos($values['languages'],'6' )!== false){print 'checked'} ?>>PHP</option>
-              <option value="7" <?php if(strpos($values['languages'],'7' )!== false){print 'checked'} ?>>Python</option>
-              <option value="8" <?php if(strpos($values['languages'],'8' )!== false){print 'checked'} ?>>Haskell</option>
-              <option value="9" <?php if(strpos($values['languages'],'9' )!== false){print 'checked'} ?>>Clojure</option>
-              <option value="10" <?php if(strpos($values['languages'],'10' )!== false){print 'checked'} ?>>Prolog</option>
-              <option value="11" <?php if(strpos($values['languages'],'11' )!== false){print 'checked'} ?>>Scala</option>
+              <option value="2" <?php if(strpos($values['languages'],'2' )!== false){print 'checked';} ?>>C</option>
+              <option value="3" <?php if(strpos($values['languages'],'3' )!== false){print 'checked';} ?>>C++</option>
+              <option value="4" <?php if(strpos($values['languages'],'4' )!== false){print 'checked';} ?>>Java</option>
+              <option value="5" <?php if(strpos($values['languages'],'5' )!== false){print 'checked';} ?>>JavaScript</option>
+              <option value="6" <?php if(strpos($values['languages'],'6' )!== false){print 'checked';} ?>>PHP</option>
+              <option value="7" <?php if(strpos($values['languages'],'7' )!== false){print 'checked';} ?>>Python</option>
+              <option value="8" <?php if(strpos($values['languages'],'8' )!== false){print 'checked';} ?>>Haskell</option>
+              <option value="9" <?php if(strpos($values['languages'],'9' )!== false){print 'checked';} ?>>Clojure</option>
+              <option value="10" <?php if(strpos($values['languages'],'10' )!== false){print 'checked';} ?>>Prolog</option>
+              <option value="11" <?php if(strpos($values['languages'],'11' )!== false){print 'checked';} ?>>Scala</option>
           </select>
         </li>
         <li>
