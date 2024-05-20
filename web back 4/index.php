@@ -146,7 +146,7 @@ else {
   {
     for($i = 0; $i < count($_POST['favourite_lan']); $i++)
     {
-      $lang .= $lang[$i] . ",";
+      $lang .= $_POST['favourite_lan'][$i] . ",";
     }
   }
 

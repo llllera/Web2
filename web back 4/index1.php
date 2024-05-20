@@ -50,9 +50,10 @@ if (!empty($messages)) {
         <li>
           <div class="date">
             <span>Год рождения:</span>
-            <select name="date">  <?php if ($errors['date']) {print 'class="error"';} ?> value="<?php print $values['date']; ?>"
+            <select name="date">  <?php if ($errors['date']) {print 'class="error"';} ?> 
               <?php 
                 for ($i = 2022; $i >= 1922; $i--) {
+                  $selected = ($i == $values['year']) ? 'selected' : '';
                   printf('<option value="%d">%d год</option>', $i, $i);
                 }
               ?>
@@ -70,18 +71,18 @@ if (!empty($messages)) {
         </li>
         <li>
           <label>Ваш любимый язык программирования:</label><br>
-          <select multiple="multiple" name="favourite_lan[]"   <?php if ($errors['language']) {print 'class="error"';} ?> value="<?php print $values['language']; ?>"id="program_language">
-              <option value="1">Pascal</option>
-              <option value="2">C</option>
-              <option value="3">C++</option>
-              <option value="4">Java</option>
-              <option value="5">JavaScript</option>
-              <option value="6">PHP</option>
-              <option value="7">Python</option>
-              <option value="8">Haskell</option>
-              <option value="9">Clojure</option>
-              <option value="10">Prolog</option>
-              <option value="11">Scala</option>
+          <select multiple="multiple" name="favourite_lan[]"   <?php if ($errors['language']) {print 'class="error"';} ?> id="program_language">
+              <option value="1" <?php if(strpos($values['languages'],'1' )!== false && strpos($values['languages'],'10' )== false && strpos($values['languages'],'11' )=== false){print 'checked'} ?> >Pascal</option>
+              <option value="2" <?php if(strpos($values['languages'],'2' )!== false){print 'checked'} ?>>C</option>
+              <option value="3" <?php if(strpos($values['languages'],'3' )!== false){print 'checked'} ?>>C++</option>
+              <option value="4" <?php if(strpos($values['languages'],'4' )!== false){print 'checked'} ?>>Java</option>
+              <option value="5" <?php if(strpos($values['languages'],'5' )!== false){print 'checked'} ?>>JavaScript</option>
+              <option value="6" <?php if(strpos($values['languages'],'6' )!== false){print 'checked'} ?>>PHP</option>
+              <option value="7" <?php if(strpos($values['languages'],'7' )!== false){print 'checked'} ?>>Python</option>
+              <option value="8" <?php if(strpos($values['languages'],'8' )!== false){print 'checked'} ?>>Haskell</option>
+              <option value="9" <?php if(strpos($values['languages'],'9' )!== false){print 'checked'} ?>>Clojure</option>
+              <option value="10" <?php if(strpos($values['languages'],'10' )!== false){print 'checked'} ?>>Prolog</option>
+              <option value="11" <?php if(strpos($values['languages'],'11' )!== false){print 'checked'} ?>>Scala</option>
           </select>
         </li>
         <li>
@@ -101,6 +102,7 @@ if (!empty($messages)) {
             <input type="submit" value="Сохранить">
         </li>
     </ol>
+
   </form>
   </body>
 </html>
