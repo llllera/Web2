@@ -195,7 +195,7 @@ else {
     setcookie('gender_value', $_POST['gender'], time() + 30 * 24 * 60 * 60);
 
     if (empty($_POST['favourite_lan']) ) {
-      setcookie('languages_error', '1', time() + 24 * 60 * 60);
+      setcookie('language_error', '1', time() + 24 * 60 * 60);
       $errors = TRUE;
     }
     setcookie('languages_value', $lang, time() + 30 * 24 * 60 * 60);

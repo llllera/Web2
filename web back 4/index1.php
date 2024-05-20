@@ -53,7 +53,7 @@ if (!empty($messages)) {
             <select name="date">  <?php if ($errors['date']) {print 'class="error"';} ?> 
               <?php 
                 for ($i = 2022; $i >= 1922; $i--) {
-                  $selected = ($i == $values['year']) ? 'selected' : '';
+                  $selected = ($i == $values['date']) ? 'selected' : '';
                   printf('<option value="%d">%d год</option>', $i, $i);
                 }
               ?>
