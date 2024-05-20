@@ -54,7 +54,7 @@ if (!empty($messages)) {
               <?php 
                 for ($i = 2022; $i >= 1922; $i--) {
                   $selected = ($i == $values['date']) ? 'selected' : '';
-                  printf('<option value="%d">%d год</option>', $i,$selected, $i);
+                  printf('<option value="%d" %s>%d год</option>', $i,$selected, $i);
                 }
               ?>
             </select>
