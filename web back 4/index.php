@@ -140,7 +140,7 @@ else {
     );
   }
   $biography = $_POST['biography'];
-  $checkboxContract = isset($_POST['checkboxContract']);
+  $checkboxContract = isset($_POST['checkboxContract']); // присвоится значение true или false
   $lang = '';
   if(!empty($_POST['favourite_lan']))
   {

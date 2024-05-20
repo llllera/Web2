@@ -62,10 +62,10 @@ if (!empty($messages)) {
         <li>
             Пол<br>
             <label><input type="radio" 
-              name="gender" value="male">
+              name="gender" value="male" <?php if ($errors['gender']) {print 'class="error"';} ?> <?php if $values['gender']=='male' print 'checked'?>>
               Муж</label>
             <label><input type="radio"
-              name="gender" value="female">
+              name="gender" value="female" <?php if ($errors['gender']) {print 'class="error"';} ?> <?php if $values['gender']=='female' print 'checked'?>>
               Жен</label><br>
         </li>
         <li>
