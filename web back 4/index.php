@@ -213,11 +213,11 @@ else {
     }
     setcookie('biography_value', $_POST['biography'], time() + 30 * 24 * 60 * 60);
 
-    if ($checkboxContract == '') {
+    if (!$checkboxContract) {
       setcookie('checkboxContract_error', '1', time() + 24 * 60 * 60);
       $errors = TRUE;
     }
-    setcookie('checkboxContract_value', $_POST['checkboxContract'], time() + 30 * 24 * 60 * 60);
+    setcookie('checkboxContract_value', $checkboxContract, time() + 30 * 24 * 60 * 60);
 
     if ($errors) {
       // При наличии ошибок перезагружаем страницу и завершаем работу скрипта.

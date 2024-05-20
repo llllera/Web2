@@ -61,7 +61,7 @@ if (!empty($messages)) {
         </li>
         <li>
             Пол<br>
-            <label><input type="radio" checked="checked"
+            <label><input type="radio" 
               name="gender" value="male">
               Муж</label>
             <label><input type="radio"
@@ -93,7 +93,7 @@ if (!empty($messages)) {
         </li>
         <li>
             <br>
-          <label><input type="checkbox"  <?php if ($errors['checkboxContract']) {print 'class="error"';} ?> value="<?php print $values['checkboxContract']; ?>"
+          <label><input type="checkbox"  <?php if ($errors['checkboxContract']) {print 'class="error"';} ?> <?php if($values['checkboxContract'])print 'checked'; ?>
             name="checkboxContract">
             С контрактом ознакомлен (а)</label><br>
         </li>
