@@ -87,8 +87,8 @@ if (!empty($messages)) {
         <li>
             <label>
                 Биография<br>
-                <textarea name="biography"  <?php if ($errors['biography']) {print 'class="error"';} ?> value="<?php print  htmlspecialchars($values['biography']); ?>"
-                  placeholder="Расскажите о себе"></textarea>
+                <textarea name="biography"  <?php if ($errors['biography']) {print 'class="error"';} ?> 
+                  placeholder="Расскажите о себе"><?php print  $values['biography']; ?></textarea>
             </label><br>
         </li>
         <li>
