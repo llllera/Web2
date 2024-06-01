@@ -102,11 +102,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     <form action="" method="post">
       <div class="form-group">
         <label for="username">Логин:</label>
-        <input type="text" id="username" name="username" required>
+        <input type="text" id="username" name="login" required>
       </div>
       <div class="form-group">
         <label for="password">Пароль:</label>
-        <input type="password" id="password" name="password" required>
+        <input type="password" id="password" name="pass" required>
       </div>
       <div class="form-group">
         <input type="submit" value="Войти">
