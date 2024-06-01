@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($_POST['action'] == 'change') {
         try {
             $id = $_POST['id'];
-            $stmt = $db->prepare("update users SET name = :name, phone = :phone, email = :email, date=:date,  gender = :gender, biography = :biography, checkboxContract = :checkboxContract where id = :id");
+            $stmt = $db->prepare("update users SET name = :name, phone = :phone, email = :email, date=:date,  gender = :gender, biography = :biography where id = :id");
             $stmt -> execute(['name'=>$_POST['name'],'phone'=>$_POST['phone'], 'email'=>$_POST['email'],'date'=>$_POST['date'],'gender'=>$_POST['gender'],'biography'=>$_POST['biography'], 'id' => $id]);
         }
         catch(PDOException $e){
