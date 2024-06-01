@@ -128,7 +128,7 @@ else {
   $login = $_POST['login'];
   $pass = md5($_POST['pass']);
   try{
-    $sth = $db->prepare('SELECT password FROM Users WHERE login = :login');
+    $sth = $db->prepare('SELECT password FROM login_and_password WHERE login = :login');
     $sth->execute(['login' => $login]);
     
     while ($row = $sth->fetch()) {
