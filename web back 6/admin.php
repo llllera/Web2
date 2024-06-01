@@ -53,13 +53,13 @@ print('Вы успешно авторизовались и видите защи
   <?php
     foreach($users as $user) {
       printf('<tr>
-      <td>%d</td>
-      <td>%s</td>
-      <td>%s</td>
-      <td>%s</td>
-      <td>%s</td>
-      <td>%s</td>
-      <td>%s</td>
+      <td>%d"</td>
+      <td><input name="name" value="%s"></td>
+      <td><input name="phone" value="%s"></td>
+      <td><input name="email" value="%s"></td>
+      <td><input name="date" value="%s"></td>
+      <td><input name="gender" value="%s"></td>
+      <td><input name="biography" value="%s"></td>
       <td class="nullCell">
         <form action="edit" method="POST">
           <input type="hidden" name="action" value="change">
