@@ -75,8 +75,8 @@ print('Вы успешно авторизовались и видите защи
           <input type="submit" class="tableButtonDel" value="удалить"/>
         </form>
       </td>
-      </tr>'
-      </form>,
+      </tr>
+      </form>',
       $user['id'], $user['name'], $user['phone'], $user['email'],
       $user['date'], $user['gender'], $user['biography'],
       $user['id'], $user['id']);
