@@ -8,10 +8,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $messages = array();
 
     if (!empty($_COOKIE['save'])) {
-      // Удаляем куку, указывая время устаревания в прошлом.
       setcookie('save', '', 100000);
-      // Если есть параметр save, то выводим сообщение пользователю.
+      setcookie('login', '', 100000);
+      setcookie('pass', '', 100000);
+     
       $messages[] = 'Спасибо, результаты сохранены.';
+       // Если в куках есть пароль, то выводим сообщение.
+      if (!empty($_COOKIE['pass'])) {
+        $messages[] = sprintf('Вы можете <a href="input.php">войти</a> с логином <strong>%s</strong>
+          и паролем <strong>%s</strong> для изменения данных.',
+          strip_tags($_COOKIE['login']),
+          strip_tags($_COOKIE['pass']));
+      }
     }
      // Складываем признак ошибок в массив.
   $errors = array();
@@ -115,11 +123,76 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   $values['languages'] = empty($_COOKIE['languages_value']) ? '' : $_COOKIE['languages_value'];
   $values['biography'] = empty($_COOKIE['biography_value']) ? '' : $_COOKIE['biography_value'];
   $values['checkboxContract'] = empty($_COOKIE['checkboxContract_value']) ? '' : $_COOKIE['checkboxContract_value'];
-  
+
+
+  if (empty($errors) && !empty($_COOKIE[session_name()]) &&
+      session_start() && !empty($_SESSION['login'])) {
+      include('data.php');
+    // TODO: загрузить данные пользователя из БД
+    // и заполнить переменную $values,
+    // предварительно санитизовав.
+
+      $userLogin = $_SESSION['login'];
+
+      $db = new PDO('mysql:host=localhost;dbname=u67325', $db_user, $db_pass,
+      [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+
+      try {
+        $formId;
+        $sth = $db->prepare('SELECT id FROM login_and_password WHERE login = :login');
+        $sth->execute(['login' => $userLogin]);
+      
+        while ($row = $sth->fetch()) {
+          $formId = $row['id'];
+        }
+        $sth = $db->prepare('SELECT name, phone, email,date, gender, biography, checkboxContract FROM users WHERE id = :id');
+          $sth->execute(['id' => $formId]);
+          while ($row = $sth->fetch()) {
+            $values['name'] = $row['name'];
+            $values['phone'] = $row['phone'];
+            $values['date'] = $row['date'];
+            $values['email'] = $row['email'];
+            $values['gender'] = $row['gender'];
+            $values['biography'] = $row['biography'];
+            $values['checkboxContract'] = $row['checkboxContract'];
+          }
+      
+          $sth = $db->prepare('SELECT id_lang FROM users_and_languages WHERE id_user = :id');
+          $sth->execute(['id' => $formId]);
+         
+          $row = $sth->fetchAll();
+          
+          $langsCV = '';
+
+          for($i = 0; $i < count($row); $i++){
+            $langsCV .= $rowl[$i] . ",";
+          }
+          $values['languages'] = $langsCV;
+          
+      }
+      catch(PDOException $e){
+        print('Error : ' . $e->getMessage());
+        exit();
+      }
+      
+      setcookie('name_value', $values['name'], time() + 30 * 24 * 60 * 60);
+      setcookie('email_value', $values['email'], time() + 30 * 24 * 60 * 60);
+      setcookie('phone_value', $values['phone'], time() + 30 * 24 * 60 * 60);
+      setcookie('date_value', $values['date'], time() + 30 * 24 * 60 * 60);
+      setcookie('gender_value', $values['gender'], time() + 30 * 24 * 60 * 60);
+      setcookie('languages_value', $values['languages'], time() + 30 * 24 * 60 * 60);
+      setcookie('biography_value', $values['biography'], time() + 30 * 24 * 60 * 60);
+      setcookie('checkboxContract_value', $values['checkboxContract'], time() + 30 * 24 * 60 * 60);
+      
+      printf('Вход с логином %s, uid %d', $_SESSION['login'], $_SESSION['uid']);
+
+  }
+ 
   include('index1.php');
 
 }
 else {
+ 
   // Проверяем ошибки.
   $errors = FALSE;
 
@@ -160,7 +233,7 @@ else {
       $errors = TRUE;
     }
     // Сохраняем ранее введенное в форму значение на месяц.
-    setcookie('name_value', $_POST['name'], time() + 30 * 24 * 60 * 60);
+    else{setcookie('name_value', $_POST['name'], time() + 30 * 24 * 60 * 60);}
 
     if (empty($phone) ) {
       setcookie('phone_error', '1', time() + 24 * 60 * 60);
@@ -170,7 +243,7 @@ else {
       setcookie('phone_error', '2', time() + 24 * 60 * 60);
       $errors = TRUE;
     }
-    setcookie('phone_value', $_POST['phone'], time() + 30 * 24 * 60 * 60);
+    else{setcookie('phone_value', $_POST['phone'], time() + 30 * 24 * 60 * 60);}
 
     if (empty($email) ) {
       setcookie('email_error', '1', time() + 24 * 60 * 60);
@@ -180,44 +253,44 @@ else {
       setcookie('email_error', '2', time() + 24 * 60 * 60);
       $errors = TRUE;
     }
-    setcookie('email_value', $_POST['email'], time() + 30 * 24 * 60 * 60);
+    else{setcookie('email_value', $_POST['email'], time() + 30 * 24 * 60 * 60);}
 
     if (empty($date) ) {
       setcookie('date_error', '1', time() + 24 * 60 * 60);
       $errors = TRUE;
     }
-    setcookie('date_value', $_POST['date'], time() + 30 * 24 * 60 * 60);
+    else{setcookie('date_value', $_POST['date'], time() + 30 * 24 * 60 * 60);}
 
     if (empty($gender) ) {
       setcookie('gender_error', '1', time() + 24 * 60 * 60);
       $errors = TRUE;
     }
-    setcookie('gender_value', $_POST['gender'], time() + 30 * 24 * 60 * 60);
+    else{setcookie('gender_value', $_POST['gender'], time() + 30 * 24 * 60 * 60);}
 
     if (empty($_POST['favourite_lan']) ) {
       setcookie('languages_error', '1', time() + 24 * 60 * 60);
       $errors = TRUE;
     }
-    setcookie('languages_value', $lang, time() + 30 * 24 * 60 * 60);
+    elsesetcookie('languages_value', $lang, time() + 30 * 24 * 60 * 60);}
 
     if (empty($biography)  ) {
       setcookie('biography_error', '1', time() + 24 * 60 * 60);
       $errors = TRUE;
     }
-    else{ if(!preg_match('/^[a-zA-Zа-яА-ЯёЁ0-9.,;!? \-]+$/u', $biography)){
+    else if{ if(!preg_match('/^[a-zA-Zа-яА-ЯёЁ0-9.,;!? \-]+$/u', $biography)){
       setcookie('biography_error', '2', time() + 24 * 60 * 60);
       $errors = TRUE;}
       else if(strlen($biography) > 128){
         setcookie('biography_error', '3', time() + 24 * 60 * 60);
         $errors = TRUE;}
     }
-    setcookie('biography_value', $_POST['biography'], time() + 30 * 24 * 60 * 60);
+    else{setcookie('biography_value', $_POST['biography'], time() + 30 * 24 * 60 * 60);}
 
     if ($checkboxContract == '') {
       setcookie('checkboxContract_error', '1', time() + 24 * 60 * 60);
       $errors = TRUE;
     }
-    setcookie('checkboxContract_value', $_POST['checkboxContract'], time() + 30 * 24 * 60 * 60);
+    else{setcookie('checkboxContract_value', $_POST['checkboxContract'], time() + 30 * 24 * 60 * 60);}
 
     if ($errors) {
       // При наличии ошибок перезагружаем страницу и завершаем работу скрипта.
@@ -237,10 +310,48 @@ else {
       // TODO: тут необходимо удалить остальные Cookies.
     }
 
-    $user = 'u67325'; 
-    $pass = '2356748'; 
-    $db = new PDO('mysql:host=localhost;dbname=u67325', $user, $pass,
+
+    include('data.php');
+    $db = new PDO('mysql:host=localhost;dbname=u67325', $db_user, $db_pass,
       [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); 
+    // Проверяем меняются ли ранее сохраненные данные или отправляются новые.
+  if (!empty($_COOKIE[session_name()]) &&
+  session_start() && !empty($_SESSION['login'])) {
+  // TODO: перезаписать данные в БД новыми данными,
+  // кроме логина и пароля.
+  $userLogin = $_SESSION['login'];
+  $formId;
+      $sth = $db->prepare('SELECT id FROM login_and_password WHERE login = :login');
+      $sth->execute(['login' => $userLogin]);
+    
+      while ($row = $sth->fetch()) {
+        $formId = $row['id'];
+      }
+
+  $stmt = $db->prepare("UPDATE users SET name = :name, phone = :phone, email = :email, date=:date,  gender = :gender, biography = :biography, checkboxContract = :checkboxContract WHERE id = :id");
+  $stmt -> execute(['name'=>$name,'phone'=>$phone, 'email'=>$email,'date'=>$date,'gender'=>$gender,'biography'=>$biography, 'checkboxContract'=>$checkboxContract, 'id' => $formId]);
+
+  $stmt = $db->prepare("DELETE FROM users_and_languages WHERE id_user = :formId");
+  $stmt -> execute(['formId'=>$formId]);
+  $stmt = $db->prepare("INSERT INTO users_and_languages (id_user, id_lang) VALUES (:id_user, :id_lang)");
+      foreach ($_POST['favourite_lan'] as $id_lang) {
+          $stmt->bindParam(':id_user', $id_user);
+          $stmt->bindParam(':id_lang', $id_lang);
+          $id_user = $formId;
+          $stmt->execute();
+      }
+  
+}
+
+  else {
+  // Генерируем уникальный логин и пароль.
+  // TODO: сделать механизм генерации, например функциями rand(), uniquid(), md5(), substr().
+  $login = uniquid();
+  $pass = uniquid();
+  // Сохраняем в Cookies.
+  setcookie('login', $login);
+  setcookie('pass', $pass);  
+  
 
     try {
       $stmt = $db->prepare("INSERT INTO users (name, phone, email, date, gender, biography, checkboxContract) VALUES (?, ?, ?, ?, ?, ?, ?)");
@@ -255,12 +366,21 @@ else {
           $id_user = $id;
           $stmt->execute();
       }
+      $stmt = $db->prepare("INSERT INTO  login_and_password (id, login, password) VALUES (?, ?, ?)");
+      $stmt->execute([$id, $login, md5($password)]);
+      print('Данные успешно сохранены!');
     } catch (PDOException $e) {
       print('Error : ' . $e->getMessage());
       exit();
     }
+  
+
+  // TODO: Сохранение данных формы, логина и хеш md5() пароля в базу данных.
+  // ...
+  }
 
     setcookie('save', '1');
     header('Location: index.php');
 }
+
 
