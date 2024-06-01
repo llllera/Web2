@@ -32,10 +32,7 @@ if (empty($_SERVER['PHP_AUTH_USER']) ||
 }
 
 print('Вы успешно авторизовались и видите защищенные паролем данные.');
-
-    $sth = $db->prepare("SELECT * FROM users");
-    $sth->execute();
-    $users = $sth->fetchAll();
+    $users = selectAll('users')
 ?>
 <h2>Таблица пользователей</h2>
 <table class="users">
@@ -69,21 +66,24 @@ print('Вы успешно авторизовались и видите защи
         
       </td>
       <td class="nullCell">
-        <form action="edit.php" method="POST">
-          <input type="hidden" name="action" value="delete">
-          <input type="hidden" name="id" value="%d">
           <input type="submit" name="delete" class="tableButtonDel" value="удалить"/>
-        </form>
       </td>
       </tr>
       </form>',
       $user['id'], $user['name'], $user['phone'], $user['email'],
       $user['date'], $user['gender'], $user['biography'],
-      $user['id'], $user['id']);
+      $user['id']);
     }
   ?>
 </table>
 
+
+<?php
+function selectAll($tables){
+  $sth = $db->prepare("SELECT * FROM $tablse");
+    $sth->execute();
+    return $users = $sth->fetchAll();
+}
 
 // *********
 // Здесь нужно прочитать отправленные ранее пользователями данные и вывести в таблицу.
