@@ -32,9 +32,9 @@ if (empty($_SERVER['PHP_AUTH_USER']) ||
 }
 
 print('Вы успешно авторизовались и видите защищенные паролем данные.');
-    $users = selectAll('users')
-    $users_lang = selectAll('users_and_languages')
-    $lang = selectAll('languages')
+    $users = selectAll('users');
+    $users_lang = selectAll('users_and_languages');
+    $lang = selectAll('languages');
 ?>
 <h2>Таблица пользователей</h2>
 <table class="users">
