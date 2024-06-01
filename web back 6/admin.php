@@ -52,7 +52,8 @@ print('Вы успешно авторизовались и видите защи
   </tr>
   <?php
     foreach($users as $user) {
-      printf('<tr>
+      printf('
+      <form action="edit.php" method="POST"><tr>
       <td>%d</td>
       <td><input name="name" value="%s"></td>
       <td><input name="phone" value="%s"></td>
@@ -61,11 +62,11 @@ print('Вы успешно авторизовались и видите защи
       <td><input name="gender" value="%s"></td>
       <td><input name="biography" value="%s"></td>
       <td class="nullCell">
-        <form action="edit.php" method="POST">
-          <input type="hidden" name="action" value="change">
+        
+       
           <input type="hidden" name="id" value="%d">
-          <input type="submit" class="tableButtonCh" value="изменить"/>
-        </form>
+          <input type="submit"name="action" class="tableButtonCh" value="изменить"/>
+        
       </td>
       <td class="nullCell">
         <form action="edit.php" method="POST">
@@ -74,7 +75,8 @@ print('Вы успешно авторизовались и видите защи
           <input type="submit" class="tableButtonDel" value="удалить"/>
         </form>
       </td>
-      </tr>',
+      </tr>'
+      </form>,
       $user['id'], $user['name'], $user['phone'], $user['email'],
       $user['date'], $user['gender'], $user['biography'],
       $user['id'], $user['id']);

@@ -2,7 +2,7 @@
 header('Content-Type: text/html; charset=UTF-8');
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     include('data.php');
-    if ($_POST['action'] == 'change') {
+    if ($_POST['action'] == 'изменить') {
         try {
             $id = $_POST['id'];
             $stmt = $db->prepare("update users SET name = :name, phone = :phone, email = :email, date=:date,  gender = :gender, biography = :biography where id = :id");
