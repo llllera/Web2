@@ -65,14 +65,14 @@ print('Вы успешно авторизовались и видите защи
         
        
           <input type="hidden" name="id" value="%d">
-          <input type="submit" name="action" class="tableButtonCh" value="изменить"/>
+          <input type="submit" name="change" class="tableButtonCh" value="изменить"/>
         
       </td>
       <td class="nullCell">
         <form action="edit.php" method="POST">
           <input type="hidden" name="action" value="delete">
           <input type="hidden" name="id" value="%d">
-          <input type="submit" class="tableButtonDel" value="удалить"/>
+          <input type="submit" name="delete" class="tableButtonDel" value="удалить"/>
         </form>
       </td>
       </tr>

@@ -2,7 +2,7 @@
 header('Content-Type: text/html; charset=UTF-8');
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     include('data.php');
-    if ($_POST['action'] == 'изменить') {
+    if (isset($_POST['change'] )) {
         try {
             $id = $_POST['id'];
             $stmt = $db->prepare("update users SET name = :name, phone = :phone, email = :email, date=:date,  gender = :gender, biography = :biography where id = :id");
@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             exit();
         }
     }
-    else if ($_POST['action'] == 'delete') {
+    else if (isset($_POST['delete'] )) {
         try {
             $id = $_POST['id'];
             $stmt = $db->prepare("DELETE FROM users where id = ?");
