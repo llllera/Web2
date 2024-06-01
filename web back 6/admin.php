@@ -80,7 +80,8 @@ print('Вы успешно авторизовались и видите защи
 
 <?php
 function selectAll($tables){
-  $sth = $db->prepare("SELECT * FROM $tablse");
+  include('data.php');
+  $sth = $db->prepare("SELECT * FROM $tables");
     $sth->execute();
     return $users = $sth->fetchAll();
 }
