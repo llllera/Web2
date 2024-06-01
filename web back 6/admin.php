@@ -65,7 +65,7 @@ print('Вы успешно авторизовались и видите защи
         
        
           <input type="hidden" name="id" value="%d">
-          <input type="submit"name="action" class="tableButtonCh" value="изменить"/>
+          <input type="submit" name="action" class="tableButtonCh" value="изменить"/>
         
       </td>
       <td class="nullCell">
