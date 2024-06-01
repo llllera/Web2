@@ -10,7 +10,7 @@
 // PHP хранит логин и пароль в суперглобальном массиве $_SERVER.
 // Подробнее см. стр. 26 и 99 в учебном пособии Веб-программирование и веб-сервисы.
 
-include('date.php');
+include('data.php');
 
   $sth = $db->prepare('SELECT login, password FROM admin');
   $sth->execute();
