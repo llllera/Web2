@@ -277,7 +277,8 @@ else {
       setcookie('biography_error', '1', time() + 24 * 60 * 60);
       $errors = TRUE;
     }
-    else if{ if(!preg_match('/^[a-zA-Zа-яА-ЯёЁ0-9.,;!? \-]+$/u', $biography)){
+    else if(!preg_match('/^[a-zA-Zа-яА-ЯёЁ0-9.,;!? \-]+$/u', $biography) ||strlen($biography) > 128){ 
+      if(!preg_match('/^[a-zA-Zа-яА-ЯёЁ0-9.,;!? \-]+$/u', $biography)){
       setcookie('biography_error', '2', time() + 24 * 60 * 60);
       $errors = TRUE;}
       else if(strlen($biography) > 128){
