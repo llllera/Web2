@@ -271,7 +271,7 @@ else {
       setcookie('languages_error', '1', time() + 24 * 60 * 60);
       $errors = TRUE;
     }
-    elsesetcookie('languages_value', $lang, time() + 30 * 24 * 60 * 60);}
+    else{setcookie('languages_value', $lang, time() + 30 * 24 * 60 * 60);}
 
     if (empty($biography)  ) {
       setcookie('biography_error', '1', time() + 24 * 60 * 60);
@@ -342,7 +342,7 @@ else {
           $stmt->execute();
       }
   
-}
+  }
 
   else {
   // Генерируем уникальный логин и пароль.
