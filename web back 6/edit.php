@@ -1,12 +1,11 @@
 <?php
 header('Content-Type: text/html; charset=UTF-8');
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    include('date.php');
+    include('data.php');
    
     if ($_POST['action'] == 'delete') {
         try {
             $id = $_POST['id'];
-            include('delete_langs.php');
             $stmt = $db->prepare("DELETE FROM users where id = ?");
             $stmt->execute([$id]);
             $stmt = $db->prepare("DELETE FROM users_and_languages where id = ?");
