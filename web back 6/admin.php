@@ -33,6 +33,8 @@ if (empty($_SERVER['PHP_AUTH_USER']) ||
 
 print('Вы успешно авторизовались и видите защищенные паролем данные.');
     $users = selectAll('users')
+    $users_lang = selectAll('users_and_languages')
+    $lang = selectAll('languages')
 ?>
 <h2>Таблица пользователей</h2>
 <table class="users">
@@ -77,6 +79,27 @@ print('Вы успешно авторизовались и видите защи
   ?>
 </table>
 
+<h2>Таблица языков программирования</h2>
+<table class="languages">
+  <tr>
+    <th>ID пользователя</th>
+    <th>Язык программирования</th>
+  </tr>
+  <?php
+    foreach($users_lang as $user_lang) {
+      foreach($land as $l){
+        if($l['id']==$user_lang['id_lang']){
+          $namelan = $l['name'];
+        }
+      }
+      printf('<tr>
+      <td>%s</td>
+      <td>%s</td>
+      </tr>',
+      $user_lang['id_user'],$namelan);
+    }
+  ?>
+</table>
 
 <?php
 function selectAll($tables){
