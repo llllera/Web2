@@ -53,7 +53,7 @@ print('Вы успешно авторизовались и видите защи
   <?php
     foreach($users as $user) {
       printf('<tr>
-      <td>%d"</td>
+      <td>%d</td>
       <td><input name="name" value="%s"></td>
       <td><input name="phone" value="%s"></td>
       <td><input name="email" value="%s"></td>
@@ -61,7 +61,7 @@ print('Вы успешно авторизовались и видите защи
       <td><input name="gender" value="%s"></td>
       <td><input name="biography" value="%s"></td>
       <td class="nullCell">
-        <form action="edit" method="POST">
+        <form action="edit.php" method="POST">
           <input type="hidden" name="action" value="change">
           <input type="hidden" name="id" value="%d">
           <input type="submit" class="tableButtonCh" value="изменить"/>
