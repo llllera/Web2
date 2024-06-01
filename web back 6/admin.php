@@ -87,7 +87,7 @@ print('Вы успешно авторизовались и видите защи
   </tr>
   <?php
     foreach($users_lang as $user_lang) {
-      foreach($land as $l){
+      foreach($lang as $l){
         if($l['id']==$user_lang['id_lang']){
           $namelan = $l['name'];
         }
