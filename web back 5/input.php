@@ -92,7 +92,7 @@ if ($_COOKIE[session_name()] && session_start()) {
       exit();
   }
 }
-
+}
 // В суперглобальном массиве $_SERVER PHP сохраняет некторые заголовки запроса HTTP
 // и другие сведения о клиненте и сервере, например метод текущего запроса $_SERVER['REQUEST_METHOD'].
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
