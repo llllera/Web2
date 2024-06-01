@@ -219,7 +219,7 @@ else {
   {
     for($i = 0; $i < count($_POST['favourite_lan']); $i++)
     {
-      $lang .= $lang[$i] . ",";
+      $lang .= $_POST['favourite_lan'][$i] . ",";
     }
   }
 
@@ -356,7 +356,7 @@ else {
 
     try {
       $stmt = $db->prepare("INSERT INTO users (name, phone, email, date, gender, biography, checkboxContract) VALUES (?, ?, ?, ?, ?, ?, ?)");
-      $stmt->execute([$name, $phone, $email, $year, $gender, $biography, $checkboxContract]);
+      $stmt->execute([$name, $phone, $email, $date, $gender, $biography, $checkboxContract]);
       
       $id = $db->lastInsertId();
 
