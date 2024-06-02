@@ -5,7 +5,7 @@
 .error {
   border: 2px solid red;
 }
-input[type="text"]{
+input.error{
   border: 2px solid red;
 }
     </style>
