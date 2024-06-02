@@ -97,7 +97,7 @@ if (!empty($messages)) {
         </li>
         <li>
             <br>
-          <label><input type="checkbox"  <?php if ($errors['checkboxContract']) {print 'class="error"';} ?> <?php if($values['checkboxContract'])print 'checked'; ?>
+          <label <?php if ($errors['checkboxContract']) {print 'class="error"';} ?>><input type="checkbox"   <?php if($values['checkboxContract'])print 'checked'; ?>
             name="checkboxContract">
             С контрактом ознакомлен (а)</label><br>
         </li>
