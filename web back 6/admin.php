@@ -104,7 +104,7 @@ print('Вы успешно авторизовались и видите защи
 </table>
 
 <?php
- include('data.php');
+ 
  $sth = $db->prepare("select  languages.name as n, count(languages.name) as c from users_and_languages left join languages on  users_and_languages.id_lang=languages.id group by languages.name order by c desc");
    $sth->execute();
    $stat = $sth->fetchAll();
