@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $id = $_POST['id'];
             $stmt = $db->prepare("DELETE FROM users where id = ?");
             $stmt->execute([$id]);
-            $stmt = $db->prepare("DELETE FROM users_and_languages where id = ?");
+            $stmt = $db->prepare("DELETE FROM users_and_languages where id_user = ?");
             $stmt->execute([$id]);
             $stmt = $db->prepare("DELETE FROM login_and_password where id = ?");
             $stmt->execute([$id]);
