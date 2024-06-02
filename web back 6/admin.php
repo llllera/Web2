@@ -21,7 +21,7 @@ include('data.php');
     $adminLogin = $row["login"];
     $adminPass = $row["password"];
   }
-  
+
 if (empty($_SERVER['PHP_AUTH_USER']) ||
     empty($_SERVER['PHP_AUTH_PW']) ||
     $_SERVER['PHP_AUTH_USER'] != $adminLogin ||
@@ -105,7 +105,7 @@ print('Вы успешно авторизовались и видите защи
 
 <?php
  include('data.php');
- $sth = $db->prepare("SELECT count(u.id_lang) as c, l.name FROM users_and_languages u, languages l where u.id_lang=l.id");
+ $sth = $db->prepare("SELECT count(u.id_lang) as c, l.name as n FROM users_and_languages u, languages l where u.id_lang=l.id");
    $sth->execute();
    $stat = $sth->fetchAll();
 ?>
@@ -121,7 +121,7 @@ print('Вы успешно авторизовались и видите защи
       <td>%s</td>
       <td>%s</td>
       </tr>',
-      $s['c'],$s['l.name']);
+      $s['c'],$s['n']);
     }
   ?>
 </table>
