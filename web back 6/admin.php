@@ -105,15 +105,15 @@ print('Вы успешно авторизовались и видите защи
 
 <?php
  include('data.php');
- $sth = $db->prepare("SELECT count(u.id_lang) as c, l.name as n FROM users_and_languages u, languages l where u.id_lang=l.id");
+ $sth = $db->prepare("select  languages.name as n, count(languages.name) as c from users_and_languages left join languages on  users_and_languages.id_lang=languages.id group by languages.name order by c desc");
    $sth->execute();
    $stat = $sth->fetchAll();
 ?>
-<h2>Таблица статистики языков программирования</h2>
+<h2>Таблица статистики любимых языков программирования</h2>
 <table>
   <tr>
-    <th>Кол-во пользователей, любящих ЯП</th>
     <th>Язык программирования</th>
+    <th>Кол-во пользователей</th>
   </tr>
   <?php
     foreach($stat as $s) {
@@ -121,7 +121,7 @@ print('Вы успешно авторизовались и видите защи
       <td>%s</td>
       <td>%s</td>
       </tr>',
-      $s['c'],$s['n']);
+      $s['n'],$s['c']);
     }
   ?>
 </table>
