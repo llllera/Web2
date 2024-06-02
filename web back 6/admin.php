@@ -21,6 +21,7 @@ include('data.php');
     $adminLogin = $row["login"];
     $adminPass = $row["password"];
   }
+  
 if (empty($_SERVER['PHP_AUTH_USER']) ||
     empty($_SERVER['PHP_AUTH_PW']) ||
     $_SERVER['PHP_AUTH_USER'] != $adminLogin ||
@@ -36,6 +37,7 @@ print('Вы успешно авторизовались и видите защи
     $users_lang = selectAll('users_and_languages');
     $lang = selectAll('languages');
 ?>
+
 <h2>Таблица пользователей</h2>
 <table class="users">
   <tr>
@@ -102,14 +104,34 @@ print('Вы успешно авторизовались и видите защи
 </table>
 
 <?php
+ include('data.php');
+ $sth = $db->prepare("SELECT count(u.id_lang) as c, l.name FROM users_and_languages u, languages l where u.id_lang=l.id");
+   $sth->execute();
+   $stat = $sth->fetchAll();
+?>
+<h2>Таблица статистики языков программирования</h2>
+<table>
+  <tr>
+    <th>Кол-во пользователей, любящих ЯП</th>
+    <th>Язык программирования</th>
+  </tr>
+  <?php
+    foreach($stat as $s) {
+      printf('<tr>
+      <td>%s</td>
+      <td>%s</td>
+      </tr>',
+      $s['c'],$s['l.name']);
+    }
+  ?>
+</table>
+
+
+<?php
 function selectAll($tables){
   include('data.php');
   $sth = $db->prepare("SELECT * FROM $tables");
     $sth->execute();
     return $users = $sth->fetchAll();
 }
-
-// *********
-// Здесь нужно прочитать отправленные ранее пользователями данные и вывести в таблицу.
-// Реализовать просмотр и удаление всех данных.
-// *********
+?>
