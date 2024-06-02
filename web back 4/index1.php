@@ -5,7 +5,7 @@
 .error {
   border: 2px solid red;
 }
-.sss{
+input[type="text"]{
   border: 2px solid red;
 }
     </style>
@@ -29,7 +29,7 @@ if (!empty($messages)) {
         <li>
             <label>
                 ФИО<br>
-                <input name="name" class = "sss"<?php if ($errors['name']) {print 'class="error"';} ?> value="<?php print $values['name']; ?>"
+                <input name="name" <?php if ($errors['name']) {print 'class="error"';} ?> value="<?php print $values['name']; ?>"
                 type="text"
                   placeholder="Введите ваше ФИО">
               </label><br>
